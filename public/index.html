@@ -68,11 +68,13 @@
             var input_nickname = prompt("닉네임을 입력하세요","");
             $("#message_box span").text(input_nickname);
             var socket = io.connect();
-            $("#msgbox").keyup(function(event) {
+            $("#msgbox").keydown(function(event) {
+                event.stopImmediatePropagation();();
                 if (event.which == 13) {
                     socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
                     $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
                     $('#msgbox').val('');
+                    return false;
                 }
             });
             $("#enter").click(function(){
