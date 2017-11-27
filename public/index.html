@@ -64,7 +64,8 @@
         </p>
     </div>
     <script type="text/javascript">
-        var input_nickname = prompt("닉네임을 입력하세요","");
+        $(document).ready(function() {
+            var input_nickname = prompt("닉네임을 입력하세요","");
         $("#message_box span").text(input_nickname);
         var socket = io.connect();
         $("#msgbox").keyup(function(event) {
@@ -83,7 +84,6 @@
             console.log(data.msg);
             $('#msgs').append(data.msg+'<BR>');
         });
-        $(document).ready(function() {
         });
     </script>
 </body>

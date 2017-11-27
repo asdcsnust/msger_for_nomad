@@ -45,6 +45,6 @@ io.sockets.on("connection", function(socket){
 		    console.log(query);
 		    socket.emit("toclient", data);
 		});
-		//console.log("Message from client:" + data.msg);
+		console.log("Message from client:" + data.msg);
 	});
 });
