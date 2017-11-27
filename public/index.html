@@ -35,36 +35,17 @@
         }
 
     </style>
-    <link rel="stylesheet" type="text/css" href="valiant360/css/valiant360.css" />
-    <title>서울과학기술대학교 "360 개인 방송 제작 기술 개발" 테스트방송</title>
+    <title>msger_for_nomad</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="valiant360/js/three.min.js"></script>
-    <script type="text/javascript" src="valiant360/jquery.valiant360.js"></script>
-
     
 
 </head>
 <body>
     <div id="left-side">
         <h1>
-            서울과학기술대학교 "360 개인 방송 제작 기술 개발" 테스트방송
+            msger_for_nomad
         </h1>
-        <div class="valiantPhoto" data-video-src="overpass-clip.mp4" style="width: 800px; height: 500px;">
-        </div>
-        <br />
-        <button id="follow">
-            팔로우
-        </button>
-        <button id="share">
-            공유
-        </button>
-        <button id="bookmark">
-            북마크
-        </button>
-        <button id="subscribe">
-            구독
-        </button>
     </div>
     <div id="right-side">
         <b>
@@ -103,7 +84,6 @@
             $('#msgs').append(data.msg+'<BR>');
         });
         $(document).ready(function() {
-            $('.valiantPhoto').Valiant360();
         });
     </script>
 </body>
