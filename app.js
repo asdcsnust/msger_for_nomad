@@ -30,9 +30,7 @@ var httpServer = http.createServer(app).listen(8081, function(req, res){
 var io = require("socket.io").listen(httpServer);
 
 io.sockets.on("connection", function(socket){
-	socket.emit("toclient", {msg: "welcome !"});
 	socket.on("fromclient", function(data){
-		console.log(data);
 		socket.broadcast.emit("toclient", data);
 		var separated_str_arr = data.msg.split(":");
 		var insert_data = {
@@ -45,9 +43,8 @@ io.sockets.on("connection", function(socket){
 			        throw err;
 			}
 		    console.log(query);
-
 		    socket.emit("toclient", data);
 		});
-		console.log("Message from client:" + data.msg);
+		//console.log("Message from client:" + data.msg);
 	});
 });
