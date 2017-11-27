@@ -2,6 +2,7 @@ var express = require("express");
 var routes = require("routes");
 var http = require("http");
 var path = require("path");
+/*
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host    :'localhost',
@@ -10,7 +11,8 @@ var connection = mysql.createConnection({
     password : '870218sg',
     database:'chatting'
 });
-
+*/
+/*
 connection.connect(function(err) {
     if (err) {
         console.error('mysql connection error');
@@ -18,7 +20,7 @@ connection.connect(function(err) {
         throw err;
     }
 });
-
+*/
 var app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,6 +34,7 @@ var io = require("socket.io").listen(httpServer);
 io.sockets.on("connection", function(socket){
 	socket.on("fromclient", function(data){
 		socket.broadcast.emit("toclient", data);
+		/*
 		var separated_str_arr = data.msg.split(":");
 		var insert_data = {
 			text: separated_str_arr[1],
@@ -43,8 +46,10 @@ io.sockets.on("connection", function(socket){
 			        throw err;
 			}
 		    console.log(query);
-		    socket.emit("toclient", data);
+		    
 		});
+*/
+		socket.emit("toclient", data);
 		console.log("Message from client:" + data.msg);
 	});
 });
