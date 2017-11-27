@@ -66,24 +66,25 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var input_nickname = prompt("닉네임을 입력하세요","");
-        $("#message_box span").text(input_nickname);
-        var socket = io.connect();
-        $("#msgbox").keyup(function(event) {
-            if (event.which == 13) {
+            $("#message_box span").text(input_nickname);
+            var socket = io.connect();
+            $("#msgbox").keyup(function(event) {
+                if (event.which == 13) {
+                    socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
+                    $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
+                    $('#msgbox').val('');
+                }
+            });
+            $("#enter").click(function(){
                 socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
                 $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
                 $('#msgbox').val('');
-            }
-        });
-        $("#enter").click(function(){
-            socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
-            $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
-            $('#msgbox').val('');
-        });
-        socket.on('toclient',function(data){
-            console.log(data.msg);
-            $('#msgs').append(data.msg+'<BR>');
-        });
+            });
+            socket.on('toclient',function(data){
+                console.log(data.msg);
+                $('#msgs').append(data.msg+'<BR>');
+                $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
+            });
         });
     </script>
 </body>
