@@ -69,7 +69,7 @@
             $("#message_box span").text(input_nickname);
             var socket = io.connect();
             $("#msgbox").keydown(function(event) {
-                event.stopImmediatePropagation();();
+                event.stopImmediatePropagation();
                 if (event.which == 13) {
                     socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
                     $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
