@@ -83,20 +83,20 @@
                 event.stopImmediatePropagation();
                 if (event.which == 13) {
                     socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
-                    $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
+                    $("#msgs").scrollTop($("#msgs")[0].scrollHeight+30);
                     $('#msgbox').val('');
                     return false;
                 }
             });
             $("#enter").click(function(){
                 socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
-                $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
+                $("#msgs").scrollTop($("#msgs")[0].scrollHeight+30);
                 $('#msgbox').val('');
             });
             socket.on('toclient',function(data){
                 console.log(data.msg);
                 $('#msgs').append(data.msg+'<BR>');
-                $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
+                $("#msgs").scrollTop($("#msgs")[0].scrollHeight+30);
             });
         });
     </script>
