@@ -1,0 +1,110 @@
+<html>
+<head>
+    <style>
+        #left-side {
+            width: 900px;
+            border: black solid 1px;
+            float: left;
+            position: relative;
+            height: 630px;
+        }
+        #right-side {
+            width: 250px;
+            border: black solid 1px;
+            float: left;
+            position: relative;
+            height: 630px;
+        }
+        #message_box {
+            position: absolute;
+            bottom:0px;
+        }
+        #message_box input {
+            height: 100px;
+        }
+        h1 {
+            font-size: 20pt;
+        }
+        #enter {
+            float: right;
+            height: 100px;
+        }
+        #msgs {
+        	overflow: scroll;
+        	height: 500px;
+        }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="valiant360/css/valiant360.css" />
+    <title>서울과학기술대학교 "360 개인 방송 제작 기술 개발" 테스트방송</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="valiant360/js/three.min.js"></script>
+    <script type="text/javascript" src="valiant360/jquery.valiant360.js"></script>
+
+    
+
+</head>
+<body>
+    <div id="left-side">
+        <h1>
+            서울과학기술대학교 "360 개인 방송 제작 기술 개발" 테스트방송
+        </h1>
+        <div class="valiantPhoto" data-video-src="overpass-clip.mp4" style="width: 800px; height: 500px;">
+        </div>
+        <br />
+        <button id="follow">
+            팔로우
+        </button>
+        <button id="share">
+            공유
+        </button>
+        <button id="bookmark">
+            북마크
+        </button>
+        <button id="subscribe">
+            구독
+        </button>
+    </div>
+    <div id="right-side">
+        <b>
+            Send message
+        </b>
+        
+        <div id="msgs">
+        </div>
+        <p id="message_box">
+            <span></span>
+            <br/>
+            <input type="text" id="msgbox"/>
+            <button id="enter">
+                입력
+            </button>
+        </p>
+    </div>
+    <script type="text/javascript">
+        var input_nickname = prompt("닉네임을 입력하세요","");
+        $("#message_box span").text(input_nickname);
+        var socket = io.connect();
+        $("#msgbox").keyup(function(event) {
+            if (event.which == 13) {
+                socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
+                $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
+                $('#msgbox').val('');
+            }
+        });
+        $("#enter").click(function(){
+            socket.emit('fromclient',{msg:input_nickname+":"+$('#msgbox').val()});
+            $("#msgs").scrollTop($("#msgs")[0].scrollHeight);
+            $('#msgbox').val('');
+        });
+        socket.on('toclient',function(data){
+            console.log(data.msg);
+            $('#msgs').append(data.msg+'<BR>');
+        });
+        $(document).ready(function() {
+            $('.valiantPhoto').Valiant360();
+        });
+    </script>
+</body>
+</html>
