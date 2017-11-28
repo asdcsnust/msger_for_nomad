@@ -86,7 +86,7 @@
         $(document).ready(function() {
             $(".mdl-js-slider").change(function(event){
                 event.stopImmediatePropagation();
-                $("body").css("opacity", $(".mdl-js-slider").value()/100);
+                $("body").css("opacity", $(".mdl-js-slider").attr('value')/100);
             });
             var input_nickname = prompt("닉네임을 입력하세요","");
             $("#message_box span").text(input_nickname);
