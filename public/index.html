@@ -25,12 +25,14 @@
             height: 100%;
         }
         #message_box {
-            position: absolute;
+            clear: both;
+/*             position: absolute; */
             bottom:0px;
         }
-        #message_box input {
-            width: 300px;
+        #message_box textarea {
+            width: 90%;
             height: 100px;
+            resize: none;
         }
         h1 {
             font-size: 20pt;
@@ -38,6 +40,7 @@
         #enter {
             float: right;
             height: 100px;
+            width: 10%;
         }
         #msgs {
         	overflow: scroll;
@@ -69,7 +72,7 @@
         <p id="message_box">
             <span></span>
             <br/>
-            <input type="text" id="msgbox"/>
+            <textarea type="text" id="msgbox"></textarea>
             <button id="enter">
                 입력
             </button>
@@ -78,6 +81,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             var input_nickname = prompt("닉네임을 입력하세요","");
+            console.log("input_nickname : ", input_nickname);
+            if(input_nickname === null || input_nickname === '') input_nickname = "guest";
             $("#message_box span").text(input_nickname);
             var socket = io.connect();
             $("#msgbox").keydown(function(event) {

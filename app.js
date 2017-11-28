@@ -33,6 +33,7 @@ var io = require("socket.io").listen(httpServer);
 
 io.sockets.on("connection", function(socket){
 	socket.on("fromclient", function(data){
+	  data.msg = '[' + getTime() + '] ' + data.msg;
 		socket.broadcast.emit("toclient", data);
 		/*
 		var separated_str_arr = data.msg.split(":");
@@ -49,7 +50,18 @@ io.sockets.on("connection", function(socket){
 		    
 		});
 */
+		console.log("data : ", data);
 		socket.emit("toclient", data);
 		console.log("Message from client:" + data.msg);
 	});
 });
+
+function getTime(){
+  const d = new Date();
+  const dArr = [d.getHours(), d.getMinutes(), d.getSeconds()];
+  dArr.forEach((d,i)=>dArr[i]=make2Digit(d));
+  return dArr.join(":");
+}
+function make2Digit(num){
+  return ("0" + num).slice(-2);
+}
