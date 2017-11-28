@@ -75,7 +75,7 @@
         </div>
         <!-- Slider with Starting Value -->
         <input id="slider" class="mdl-slider mdl-js-slider" type="range"
-          min="0" max="100" value="100" tabindex="0" oninput = "changeOpacity(this.value)" onchange = "changeOpacity(this.value)">
+          min="0" max="100" value="100" tabindex="0">
         <p id="message_box">
             <span></span>
             <br/>
@@ -86,10 +86,11 @@
         </p>
     </div>
     <script type="text/javascript">
-        function changeOpacity(value) {
-            $("body").css("opacity", value/100);
-         }
         $(document).ready(function() {
+            $("#slider").change(function(event){
+                console.log($("#slider").attr('value'));
+                $("body").css("opacity", $("#slider").attr('value')/100);
+            });
             var input_nickname = prompt("닉네임을 입력하세요","");
             console.log("input_nickname : ", input_nickname);
             if(input_nickname === null || input_nickname === '') input_nickname = "guest";
