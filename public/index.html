@@ -87,10 +87,11 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#slider").change(function(event){
-                console.log($("#slider").attr('value'));
-                $("body").css("opacity", $("#slider").attr('value')/100);
-            });
+            function opacityChange(value){
+                $("body").css("opacity", value/100);
+            }
+            document.getElementById("slider").onchange(opacityChange(this.value){});
+            document.getElementById("slider").oninput(opacityChange(this.value){});
             var input_nickname = prompt("닉네임을 입력하세요","");
             console.log("input_nickname : ", input_nickname);
             if(input_nickname === null || input_nickname === '') input_nickname = "guest";
