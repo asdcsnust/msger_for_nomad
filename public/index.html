@@ -84,7 +84,7 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
-            $(".mdl-js-slider").change(function(event){
+            $("#slider").change(function(event){
                 console.log($("#slider").attr('value'));
                 $("body").css("opacity", $("#slider").attr('value')/100);
             });
