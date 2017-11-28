@@ -3,6 +3,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=5, minimum-scale=1, width=device-width" />
     <link href='https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <style>
         body,
         input,
@@ -42,7 +45,8 @@
         #msgs {
         	overflow: scroll;
         	height: 70%;
-            border: solid black 1px;
+            border-top: solid black 1px;
+            border-bottom: solid black 1px;
         }
         @import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css); 
     </style>
@@ -66,6 +70,9 @@
         
         <div id="msgs">
         </div>
+        <!-- Default Slider -->
+        <input class="mdl-slider mdl-js-slider" type="range"
+          min="0" max="100" value="0" tabindex="0">
         <p id="message_box">
             <span></span>
             <br/>
@@ -77,6 +84,10 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
+            $(".mdl-js-slider").change(function(event){
+                event.stopImmediatePropagation();
+                $("body").css("opacity", $(".mdl-js-slider").value()/100);
+            });
             var input_nickname = prompt("닉네임을 입력하세요","");
             $("#message_box span").text(input_nickname);
             var socket = io.connect();
