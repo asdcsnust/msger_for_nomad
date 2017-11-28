@@ -87,7 +87,7 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
-            function opacityChange(value){
+            var opacityChange = function(value){
                 $("body").css("opacity", value/100);
             }
             var slider = document.getElementById("slider");
