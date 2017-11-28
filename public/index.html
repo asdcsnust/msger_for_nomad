@@ -70,9 +70,9 @@
         
         <div id="msgs">
         </div>
-        <!-- Default Slider -->
-        <input class="mdl-slider mdl-js-slider" type="range"
-          min="0" max="100" value="0" tabindex="0">
+        <!-- Slider with Starting Value -->
+        <input id="slider" class="mdl-slider mdl-js-slider" type="range"
+          min="0" max="100" value="100" tabindex="0">
         <p id="message_box">
             <span></span>
             <br/>
@@ -86,7 +86,7 @@
         $(document).ready(function() {
             $(".mdl-js-slider").change(function(event){
                 event.stopImmediatePropagation();
-                $("body").css("opacity", $(".mdl-js-slider").attr('value')/100);
+                $("body").css("opacity", $("#slider").attr('value')/100);
             });
             var input_nickname = prompt("닉네임을 입력하세요","");
             $("#message_box span").text(input_nickname);
