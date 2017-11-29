@@ -111,10 +111,16 @@
             });
             socket.on('toclient',function(data){
                 console.log(data.msg);
-                $('#msgs').append(data.msg+'<BR>');
+                $('#msgs').append(urlify(data.msg)+'<BR>');
                 $("#msgs").scrollTop($("#msgs")[0].scrollHeight+30);
             });
         });
+        function urlify(text) {
+          var urlRegex = /(https?:\/\/[^\s]+)/g;
+          return text.replace(urlRegex, function(url) {
+              return '<a href="' + url + '" target="_blank">' + url + '</a>';
+          })
+       }
     </script>
 </body>
 </html>
