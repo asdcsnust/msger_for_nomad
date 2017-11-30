@@ -33,7 +33,7 @@ var io = require("socket.io").listen(httpServer);
 
 io.sockets.on("connection", function(socket){
 	socket.on("fromclient", function(data){
-	  data.msg = '[' + getTime() + '] ' + data.msg;
+	  data.msg = '[' + getTime() + '] ' + data.msg + "id: " + this.id;
 		socket.broadcast.emit("toclient", data);
 		/*
 		var separated_str_arr = data.msg.split(":");
