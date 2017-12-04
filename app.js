@@ -58,7 +58,9 @@ io.sockets.on("connection", function(socket){
 
 function getTime(){
   const d = new Date(); // if server uses utc time
-  const offset = d.getTimezoneOffset() / 60;
+  console.log("d.getTimezoneOffset() : ", d.getTimezoneOffset());
+  let offset = d.getTimezoneOffset() / 60;
+  if(offset !== 9) offset = 9;
   const dArr = [d.getHours() - offset, d.getMinutes(), d.getSeconds()];
   dArr.forEach((d,i)=>dArr[i]=make2Digit(d));
   return dArr.join(":");
