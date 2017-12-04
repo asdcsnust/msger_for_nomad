@@ -54,13 +54,14 @@ io.sockets.on("connection", function(socket){
 		socket.emit("toclient", data);
 		console.log("Message from client:" + data.msg);
 	});
+	socket.on('disconnect', function(reason){
+		console.log("reason : " + reason +"id: "+ this.id);
+	});
 });
 
 function getTime(){
   const d = new Date(); // if server uses utc time
-  console.log("d.getTimezoneOffset() : ", d.getTimezoneOffset());
-  let offset = d.getTimezoneOffset() / 60;
-  if(offset !== 9) offset = 9;
+  const offset = d.getTimezoneOffset() / 60;
   const dArr = [d.getHours() - offset, d.getMinutes(), d.getSeconds()];
   dArr.forEach((d,i)=>dArr[i]=make2Digit(d));
   return dArr.join(":");
